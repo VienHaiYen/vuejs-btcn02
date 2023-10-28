@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+}
+body {
+  width: 100%;
+  background-color: #cccccc !important;
+  min-height: 100vh;
+  padding: 0.3rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+html {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.txt-color {
+  color: #686767;
+}
+
+.bg-bland-grey {
+  background-color: #f8f9fb;
+}
