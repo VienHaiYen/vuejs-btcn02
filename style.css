@@ -24,3 +24,7 @@ html {
 .bg-bland-grey {
   background-color: #f8f9fb;
 }
+.carousel img {
+  height: 50vh;
+  object-fit: contain;
+}

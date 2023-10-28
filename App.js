@@ -13,9 +13,9 @@ export default {
     return { count: 0 };
   },
   template: `
-  <Header />
-  <Navbar />
+    <Header />
+    <Navbar />
+    <Main />
     `,
-  // <Main />
   // <Footer />
 };
