@@ -14,8 +14,8 @@ export default {
   },
   template: `
     <Header />
-    <Navbar />
-    <Main />
-    <Footer />
-  `,
+    `,
+  // <Navbar />
+  // <Main />
+  // <Footer />
 };
