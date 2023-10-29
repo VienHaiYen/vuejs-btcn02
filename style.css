@@ -38,12 +38,16 @@ body {
   background-color: #212429;
 }
 .header,
-.navbar {
+.navbar,
+.footer {
   background-color: #f8f9fb;
+  z-index: 2;
 }
 .carousel img {
-  height: 50vh;
-  object-fit: contain;
+  /* height: 50vh; */
+  width: 25%;
+  /* height: fit-content; */
+  /* object-fit: contain; */
 }
 .carousel img.fill {
   height: 100%;
@@ -54,4 +58,20 @@ body {
 .carousel-control-prev {
   /* background-color: #7b7777 !important; */
   width: 76px !important;
+}
+.scale {
+  transform: scale(1.2);
+}
+.movie-short-info {
+  width: 25%;
+  text-align: center;
+  background-color: #6f6f6f;
+  color: #fff;
+  display: none;
+}
+.carouselExampleFade {
+  position: static;
+}
+.carousel-inner {
+  object-fit: cover;
 }
