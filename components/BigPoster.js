@@ -1,7 +1,6 @@
 import db from "../db/data.js";
 
 const get5NewestMovies = (movies, n) => {
-  console.log(11, movies);
   let nLastestMovies = movies
     .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
     .splice(0, n);
@@ -17,7 +16,6 @@ export default {
     getdata() {
       this.movies = db.Movies;
       this.topLastestMovies = get5NewestMovies(this.movies, 5);
-      console.log(this.topLastestMovies);
     },
     prev() {
       this.active =

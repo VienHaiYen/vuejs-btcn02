@@ -1,42 +1,58 @@
 import db from "../db/data.js";
 
-const get5NewestMovies = (movies, n) => {
-  console.log(11, movies);
-  let nLastestMovies = movies
-    .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+const getNMostPopularMovies = (movies, n) => {
+  let nMostPopularMovies = movies
+    .sort((a, b) => b.imDbRatingCount - a.imDbRatingCount)
     .splice(0, n);
 
-  return nLastestMovies;
+  return nMostPopularMovies;
 };
+function chunkMaxLength(arr, chunkSize, maxLength) {
+  let group = Array.from({ length: maxLength }, () => arr.splice(0, chunkSize));
+  console.log(group);
+  return group;
+}
 
 export default {
   data() {
-    return { movies: [], topLastestMovies: [], active: 0 };
+    return {
+      movies: [],
+      topLastestMovies: [],
+      groupPopularMovie: [[]],
+      active: 0,
+    };
   },
   methods: {
     getdata() {
-      this.movies = db.Movies;
-      this.topLastestMovies = get5NewestMovies(this.movies, 5);
-      console.log(this.topLastestMovies);
+      this.movies = db.MostPopularMovies;
+      this.topPopularMovies = getNMostPopularMovies(this.movies, 15);
+      console.log(this.topPopularMovies);
+
+      this.groupPopularMovie = chunkMaxLength(
+        this.topPopularMovies,
+        3,
+        Math.ceil(this.topPopularMovies.length / 3)
+      );
+      console.log(this.groupPopularMovie);
     },
     prev() {
       this.active =
-        this.active == 0 ? this.topLastestMovies.length - 1 : this.active - 1;
+        this.active == 0 ? this.groupPopularMovie.length - 1 : this.active - 1;
     },
     next() {
       this.active =
-        this.active == this.topLastestMovies.length - 1 ? 0 : this.active + 1;
-      console.log("next");
+        this.active == this.groupPopularMovie.length - 1 ? 0 : this.active + 1;
     },
   },
   mounted() {
     this.getdata();
   },
   template: `
+    <h5 class=" pt-3 ob-1">Top Rating</h5>
     <div id="carouselExampleFade" class="carousel slide carousel-fade m-2" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item" v-for="(i,index) in topLastestMovies" :class="{active:this.active==index}" >
-          <img :src='i.image' class="d-block w-100" alt="...">
+      <div class="carousel-inner w-100 d-flex justify-content-between" style="position:static">
+        <div v-for="(i,index) in groupPopularMovie[active]"  class="active w-50 d-flex justify-content-center">
+          <img :src='i.image'  alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev" @click="prev">
