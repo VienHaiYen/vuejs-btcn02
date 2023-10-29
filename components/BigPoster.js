@@ -1,3 +1,4 @@
+import DBUltity from "../DBUltity.js";
 import db from "../db/data.js";
 let scaleNum = 1.02;
 const get5NewestMovies = (movies, n) => {
@@ -13,10 +14,16 @@ export default {
     return { movies: [], topLastestMovies: [], active: 0 };
   },
   methods: {
-    getdata() {
-      this.movies = db.Movies;
-      this.topLastestMovies = get5NewestMovies(this.movies, 5);
+    async getdata() {
+      // this.movies = db.Movies;
+      // this.topLastestMovies = get5NewestMovies(this.movies, 5);
+      // console.log(123, this.movies[1]);
+      this.topLastestMovies = await DBUltity.fetch(
+        "get/5-lastest/movies?page=1&perpage=5"
+      ).then((res) => res.movies);
+      console.log(345, this.movies[1]);
     },
+
     prev() {
       this.active =
         this.active == 0 ? this.topLastestMovies.length - 1 : this.active - 1;

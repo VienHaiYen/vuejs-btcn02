@@ -3,6 +3,7 @@ import db from "./db/data.js";
 const DBUltity = {
   fetch: (queryString) => {
     const [type, classN, pattern, query] = queryString.split("/");
+    console.log([type, classN, pattern, query]);
     const params = new URLSearchParams(query);
     console.log(params.toString());
 

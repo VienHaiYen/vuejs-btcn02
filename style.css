@@ -29,7 +29,9 @@ body {
   background-color: #000 !important;
   color: #fff !important;
 }
-
+li {
+  list-style: none;
+}
 .txt-color {
   color: #686767;
 }
