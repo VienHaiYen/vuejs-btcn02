@@ -15,15 +15,22 @@ export default {
   },
   data() {
     return {
-      isDetail: false,
+      isDetail: true,
+      crrId: "",
     };
   },
+  methods: {
+    getDetailMovieID(data) {
+      this.crrId = data;
+      this.isDetail = true;
+    },
+  },
   template: `
-    <div v-if="!home && isDetail">
-      <MovieItem />
+    <div v-if=" isDetail">
+      <MovieItem :id="crrId"/>
     </div>
       <div v-if="!home &&!isDetail">
-        <SearchResult :search="search"/>
+        <SearchResult :search="search" @showDetails="getDetailMovieID"/>
       </div>
     <div v-if="home && !isDetail">
       <BigPoster />

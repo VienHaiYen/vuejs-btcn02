@@ -11,6 +11,9 @@ const DBUltity = {
     if (type == "get") {
       let data = getData(classN, pattern, params);
       return data;
+    } else if (type == "details") {
+      let data = getDetails(classN, pattern, params);
+      return data;
     } else {
       return Promise.reject(new Error("Invalid type"));
     }
@@ -30,13 +33,12 @@ const getData = (classN, pattern, params) => {
   let page = parseInt(params.get("page")) || 1;
   let movies = [];
   if (pattern) {
-    console.log("da vaopp", pattern);
     movies = db.Movies.filter(
       (item) => item.fullTitle.toLowerCase().indexOf(pattern) !== -1
     );
   } else {
     switch (classN) {
-      case "all-movie":
+      case "movie":
         movies = db.Movies.splice((page - 1) * perpage, page * perpage);
         break;
       case "5-lastest":
@@ -64,6 +66,27 @@ const getData = (classN, pattern, params) => {
     perpage,
     totalpage: Math.ceil(movies.length / perpage),
     quantity: movies.length,
+    movies,
+  });
+};
+
+const getDetails = (classN, pattern) => {
+  console.log("parr", pattern);
+  let movies = [];
+  switch (classN) {
+    case "movie":
+      movies = db.Movies.filter((item) => item.id == pattern);
+      break;
+
+    default:
+      alert("Error fetch");
+  }
+
+  return Promise.resolve({
+    // page,
+    // perpage,
+    // totalpage: Math.ceil(movies.length / perpage),
+    // quantity: movies.length,
     movies,
   });
 };

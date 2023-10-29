@@ -8,9 +8,12 @@ export default {
   methods: {
     async getdata() {
       this.topLastestMovies = await DBUltity.fetch(
-        `get/all-movie/${this.search}?page=1&perpage=15`
+        `get/movie/${this.search}?page=1&perpage=15`
       ).then((res) => res.movies);
-      console.log(this.topLastestMovies);
+    },
+    showDetails(i) {
+      console.log(i);
+      this.$emit("showDetails", i);
     },
   },
   watch: {
@@ -20,11 +23,10 @@ export default {
   },
   mounted() {
     this.getdata();
-    console.log(123);
   },
   template: `{{search}}
-      <div class="d-flex flex-wrap justify-content-center align-items-start my-2">
-        <div class="card mt-3 mx-3" v-for="(i,index) in topLastestMovies" style="width:30%">
+      <div class="d-flex flex-wrap justify-content-center align-items-start my-2" >
+        <div class="card mt-3 mx-3" v-for="(i,index) in topLastestMovies" @click="showDetails(i.id)" style="width:30%">
           <img class="card-img-top" :src='i.image' style="aspect-ratio:2/3" alt="Card image cap">
           <div class="card-body p-2 text-center">
             <h6 class="card-title">{{i.title}}</h6>
