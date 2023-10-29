@@ -1,13 +1,7 @@
 import db from "../db/data.js";
+import DBUltity from "../DBUltity.js";
 let scaleNum = 1.1;
 
-const getNMostPopularMovies = (movies, n) => {
-  let nMostPopularMovies = movies
-    .sort((a, b) => b.imDbRatingCount - a.imDbRatingCount)
-    .splice(0, n);
-
-  return nMostPopularMovies;
-};
 function chunkMaxLength(arr, chunkSize, maxLength) {
   let group = Array.from({ length: maxLength }, () => arr.splice(0, chunkSize));
   return group;
@@ -23,9 +17,10 @@ export default {
     };
   },
   methods: {
-    getdata() {
-      this.movies = db.MostPopularMovies;
-      this.topPopularMovies = getNMostPopularMovies(this.movies, 15);
+    async getdata() {
+      this.topPopularMovies = await DBUltity.fetch("get/popular/movies").then(
+        (res) => res.movies
+      );
 
       this.groupPopularMovie = chunkMaxLength(
         this.topPopularMovies,

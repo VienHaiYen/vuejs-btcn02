@@ -2,10 +2,11 @@ import db from "./db/data.js";
 
 const DBUltity = {
   fetch: (queryString) => {
-    const [type, classN, pattern, query] = queryString.split("/");
-    console.log([type, classN, pattern, query]);
-    const params = new URLSearchParams(query);
-    console.log(params.toString());
+    const [query, _params] = queryString.split("?");
+    const [type, classN, pattern] = query.split("/");
+    console.log([type, classN, pattern]);
+    const params = new URLSearchParams(_params);
+    console.log("xx", type, classN, pattern, params.get("perpage"));
 
     if (type == "get") {
       let data = getData(classN, pattern, params);
@@ -22,6 +23,13 @@ const getNNewestMovies = (movies, n) => {
     .splice(0, n);
 
   return nLastestMovies;
+};
+const getNMostPopularMovies = (movies, n) => {
+  let nMostPopularMovies = movies
+    .sort((a, b) => b.imDbRatingCount - a.imDbRatingCount)
+    .splice(0, n);
+
+  return nMostPopularMovies;
 };
 
 const getData = (classN, pattern, params) => {

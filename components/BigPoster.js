@@ -11,17 +11,13 @@ const get5NewestMovies = (movies, n) => {
 
 export default {
   data() {
-    return { movies: [], topLastestMovies: [], active: 0 };
+    return { topLastestMovies: [], active: 0 };
   },
   methods: {
     async getdata() {
-      // this.movies = db.Movies;
-      // this.topLastestMovies = get5NewestMovies(this.movies, 5);
-      // console.log(123, this.movies[1]);
       this.topLastestMovies = await DBUltity.fetch(
         "get/5-lastest/movies?page=1&perpage=5"
       ).then((res) => res.movies);
-      console.log(345, this.movies[1]);
     },
 
     prev() {
