@@ -24,13 +24,6 @@ const getNNewestMovies = (movies, n) => {
 
   return nLastestMovies;
 };
-const getNMostPopularMovies = (movies, n) => {
-  let nMostPopularMovies = movies
-    .sort((a, b) => b.imDbRatingCount - a.imDbRatingCount)
-    .splice(0, n);
-
-  return nMostPopularMovies;
-};
 
 const getData = (classN, pattern, params) => {
   let perpage = parseInt(params.get("perpage")) || 15;
@@ -40,7 +33,7 @@ const getData = (classN, pattern, params) => {
     movies = db.Movies.splice((page - 1) * perpage, page * perpage);
   } else if (classN == "5-lastest") {
     movies = getNNewestMovies(db.Movies, 5);
-  } else if (classN == "topMovie") {
+  } else if (classN == "top-movies") {
     movies = db.Top50Movies.splice((page - 1) * perpage, page * perpage);
   } else if (classN == "popular") {
     movies = db.MostPopularMovies.splice((page - 1) * perpage, page * perpage);
