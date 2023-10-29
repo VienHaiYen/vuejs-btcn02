@@ -1,5 +1,5 @@
 import db from "../db/data.js";
-let scaleNum = 1.01;
+let scaleNum = 1.02;
 const get5NewestMovies = (movies, n) => {
   let nLastestMovies = movies
     .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
@@ -45,9 +45,9 @@ export default {
   template: `
     <div id="carouselExampleFade" class="carousel slide carousel-fade m-2 d-flex align-items-center justify-content-center" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="slide-item carousel-item d-flex align-items-center flex-column" v-for="(i,index) in topLastestMovies"  :class="{active:this.active==index}">
+        <div class="slide-item carousel-item d-flex align-items-center flex-column position-relative" v-for="(i,index) in topLastestMovies"  :class="{active:this.active==index}">
           <img :src='i.image' @mouseover="scale" @mouseout="reset" alt="..." />
-          <div class="movie-short-info px-2 py-1 ">{{i.title}} - {{i.year}}</div>
+          <div class="movie-short-info px-2 py-1" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%)">{{i.title}} - {{i.year}}</div>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev" @click="prev">
