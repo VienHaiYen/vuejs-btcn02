@@ -25,9 +25,9 @@ export default {
   },
   methods: {
     async getdata() {
-      this.topPopularMovies = await DBUltity.fetch(
-        "get/top-movies/movies"
-      ).then((res) => res.movies);
+      this.topPopularMovies = await DBUltity.fetch("get/top-movies/").then(
+        (res) => res.movies
+      );
 
       this.groupPopularMovie = chunkMaxLength(
         this.topPopularMovies,

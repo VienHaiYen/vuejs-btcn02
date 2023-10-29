@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     async getdata() {
-      this.topPopularMovies = await DBUltity.fetch("get/popular/movies").then(
+      this.topPopularMovies = await DBUltity.fetch("get/popular/").then(
         (res) => res.movies
       );
 

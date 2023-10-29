@@ -12,13 +12,13 @@ export default {
   data() {
     return {
       key: 20633,
-      receivedData: "",
+      seachValue: "",
       isSeaching: false,
     };
   },
   methods: {
     receiveData(data) {
-      this.receivedData = data;
+      this.seachValue = data;
       console.log(233, data);
       this.isSeaching = true;
     },
@@ -26,7 +26,7 @@ export default {
   template: `
     <Header key="20633"/>
     <Navbar  @changeData="receiveData"/>
-    <Main :display="isSeaching"/>
+    <Main :home="!isSeaching"/>
     <Footer />
     `,
   // <Footer />

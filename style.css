@@ -40,6 +40,9 @@ li {
 .--dark-mode .navbar {
   background-color: #212429;
 }
+.--dark-mode .card {
+  color: #000 !important;
+}
 .header,
 .navbar,
 .footer {

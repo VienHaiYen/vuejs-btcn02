@@ -8,7 +8,7 @@ export default {
   methods: {
     async getdata() {
       this.topLastestMovies = await DBUltity.fetch(
-        "get/5-lastest/movies?page=1&perpage=5"
+        "get/5-lastest/?page=1&perpage=5"
       ).then((res) => res.movies);
     },
 
