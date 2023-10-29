@@ -10,12 +10,13 @@ export default {
     Footer,
   },
   data() {
-    return { count: 0 };
+    return { key: 20633 };
   },
   template: `
-    <Header />
+    <Header key="20633"/>
     <Navbar />
     <Main />
+    <Footer />
     `,
   // <Footer />
 };

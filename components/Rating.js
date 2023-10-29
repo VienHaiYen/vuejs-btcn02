@@ -9,7 +9,6 @@ const getNMostPopularMovies = (movies, n) => {
 };
 function chunkMaxLength(arr, chunkSize, maxLength) {
   let group = Array.from({ length: maxLength }, () => arr.splice(0, chunkSize));
-  console.log(group);
   return group;
 }
 
@@ -26,14 +25,12 @@ export default {
     getdata() {
       this.movies = db.MostPopularMovies;
       this.topPopularMovies = getNMostPopularMovies(this.movies, 15);
-      console.log(this.topPopularMovies);
 
       this.groupPopularMovie = chunkMaxLength(
         this.topPopularMovies,
         3,
         Math.ceil(this.topPopularMovies.length / 3)
       );
-      console.log(this.groupPopularMovie);
     },
     prev() {
       this.active =

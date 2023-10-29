@@ -4,7 +4,7 @@ export default {
   },
   template: `
     <div
-      class="d-flex justify-content-between align-items-center bg-bland-grey p-2 rounded mt-2"
+      class="navbar d-flex justify-content-between align-items-center p-2 rounded mt-2"
     >
       <span>Home</span>
       <div>

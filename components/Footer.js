@@ -3,6 +3,12 @@ export default {
     return {};
   },
   template: `
-    <div>Footer</div>
+    <div
+      class="d-flex justify-content-between align-items-center bg-bland-grey px-2 rounded"
+    >
+      <span>20120633</span>
+      <h6>Viên Hải Yến</h6>
+
+    </div>
     `,
 };
