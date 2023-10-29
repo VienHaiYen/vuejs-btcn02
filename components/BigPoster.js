@@ -47,7 +47,11 @@ export default {
       <div class="carousel-inner">
         <div class="slide-item carousel-item d-flex align-items-center flex-column position-relative" v-for="(i,index) in topLastestMovies"  :class="{active:this.active==index}">
           <img :src='i.image' @mouseover="scale" @mouseout="reset" alt="..." />
-          <div class="movie-short-info px-2 py-1" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%)">{{i.title}} - {{i.year}}</div>
+          <div class="movie-short-info px-2 py-1" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%); line-spacing:2px">
+            <li>{{i.title}} - {{i.year}}</li>
+            <li>Rating - {{i.ratings.imDb}}</li>
+            <li>Thời gian - {{i.runtimeStr}}</li>
+          </div>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev" @click="prev">
