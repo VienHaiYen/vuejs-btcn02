@@ -48,11 +48,11 @@ export default {
     this.getdata();
   },
   template: `
-    <h5 class=" pt-3 ob-1">Most Popular</h5>
-    <div id="carouselExampleFade" class="carousel slide carousel-fade m-2" data-bs-ride="carousel">
-      <div class="carousel-inner w-100 d-flex justify-content-between" style="position:static">
-        <div v-for="(i,index) in groupPopularMovie[active]"  class="active w-50 d-flex justify-content-center">
-          <img :src='i.image'  alt="...">
+    <h5 class=" pt-3 ob-1">Top Rating</h5>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade m-2" style="height:200px" data-bs-ride="carousel">
+      <div class="carousel-inner  d-flex justify-content-around h-100" style="position:static; width:100%">
+        <div v-for="(i,index) in groupPopularMovie[active]" style="flex:1; margin:0 3rem" class="active d-flex justify-content-center">
+          <img :src='i.image' class="fill" alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev" @click="prev">
