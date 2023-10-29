@@ -73,9 +73,11 @@ const getData = (classN, pattern, params) => {
 const getDetails = (classN, pattern) => {
   console.log("parr", pattern);
   let movies = [];
+  let reviews = [];
   switch (classN) {
     case "movie":
       movies = db.Movies.filter((item) => item.id == pattern);
+      reviews = db.Reviews.filter((item) => item.movieId == pattern)[0].items;
       break;
 
     default:
@@ -83,11 +85,8 @@ const getDetails = (classN, pattern) => {
   }
 
   return Promise.resolve({
-    // page,
-    // perpage,
-    // totalpage: Math.ceil(movies.length / perpage),
-    // quantity: movies.length,
     movies,
+    reviews,
   });
 };
 

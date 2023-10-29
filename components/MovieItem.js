@@ -3,15 +3,17 @@ import DBUltity from "../DBUltity.js";
 export default {
   props: ["id"],
   data() {
-    return { movieDetails: {} };
+    return { movieDetails: {}, reviews: [] };
   },
   methods: {
     async getdata() {
-      this.movieDetails = await DBUltity.fetch(
+      let info = await DBUltity.fetch(
         `details/movie/tt4154796?page=1&perpage=15`
         // `details/movie/${this.id}?page=1&perpage=15`
-      ).then((res) => res.movies[0]);
-      console.log("ww", this.movieDetails);
+      );
+      this.movieDetails = info.movies[0];
+      this.reviews = info.reviews;
+      console.log("ww", this.reviews);
     },
   },
   mounted() {
@@ -30,13 +32,13 @@ export default {
           <p class="card-text"><b>Genre</b>: <span v-for="(i,index) in movieDetails.genreList"><span v-if="index!=0">, </span>{{i.value}}</span></p>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Review</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <h3>Reviews</h3>
+      <div class="card mt-2" v-for="(i,index) in reviews">
+        <div class="card-body" >
+          <h5 class="card-title">{{i.username}} <i style="color:#333; font-size:10px">{{i.date}}</i></h5>
+          <p class="card-text">{{i.title}}</p>
+          <p class="card-text">{{i.content}}</p>
         </div>
-        <img class="card-img-bottom" src="..." alt="Card image cap">
       </div>
     `,
 };
