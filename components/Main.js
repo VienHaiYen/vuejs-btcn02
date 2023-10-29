@@ -4,7 +4,7 @@ import Rating from "./Rating.js";
 import SearchResult from "./SearchResult.js";
 import MovieItem from "./MovieItem.js";
 export default {
-  props: ["home"],
+  props: ["home", "search"],
 
   components: {
     BigPoster,
@@ -23,7 +23,7 @@ export default {
       <MovieItem />
     </div>
       <div v-if="!home &&!isDetail">
-        <SearchResult />
+        <SearchResult :search="search"/>
       </div>
     <div v-if="home && !isDetail">
       <BigPoster />

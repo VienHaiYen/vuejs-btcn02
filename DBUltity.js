@@ -29,16 +29,34 @@ const getData = (classN, pattern, params) => {
   let perpage = parseInt(params.get("perpage")) || 15;
   let page = parseInt(params.get("page")) || 1;
   let movies = [];
-  if (classN == "all-movie") {
-    movies = db.Movies.splice((page - 1) * perpage, page * perpage);
-  } else if (classN == "5-lastest") {
-    movies = getNNewestMovies(db.Movies, 5);
-  } else if (classN == "top-movies") {
-    movies = db.Top50Movies.splice((page - 1) * perpage, page * perpage);
-  } else if (classN == "popular") {
-    movies = db.MostPopularMovies.splice((page - 1) * perpage, page * perpage);
-  } else if (classN == "review") {
-    movies = db.Reviews.splice((page - 1) * perpage, page * perpage);
+  if (pattern) {
+    console.log("da vaopp", pattern);
+    movies = db.Movies.filter(
+      (item) => item.fullTitle.toLowerCase().indexOf(pattern) !== -1
+    );
+  } else {
+    switch (classN) {
+      case "all-movie":
+        movies = db.Movies.splice((page - 1) * perpage, page * perpage);
+        break;
+      case "5-lastest":
+        movies = getNNewestMovies(db.Movies, 5);
+        break;
+      case "popular":
+        movies = db.Top50Movies.splice((page - 1) * perpage, page * perpage);
+        break;
+      case "top-movies":
+        movies = db.MostPopularMovies.splice(
+          (page - 1) * perpage,
+          page * perpage
+        );
+        break;
+      case "review":
+        movies = db.Reviews.splice((page - 1) * perpage, page * perpage);
+        break;
+      default:
+        alert("Error fetch");
+    }
   }
 
   return Promise.resolve({

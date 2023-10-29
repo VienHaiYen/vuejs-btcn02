@@ -88,3 +88,7 @@ li {
 .carousel-inner {
   object-fit: cover;
 }
+
+.card:last-of-type {
+  margin-right: auto;
+}

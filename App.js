@@ -26,8 +26,7 @@ export default {
   template: `
     <Header key="20633"/>
     <Navbar  @changeData="receiveData"/>
-    <Main :home="!isSeaching"/>
+    <Main :home="!isSeaching" :search="seachValue"/>
     <Footer />
     `,
-  // <Footer />
 };
