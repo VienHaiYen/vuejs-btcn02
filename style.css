@@ -24,6 +24,7 @@ body {
   padding: 0.3rem;
   margin: 0 auto;
   max-width: 1200px;
+  position: relative;
 }
 .--dark-mode body {
   background-color: #000 !important;
@@ -44,6 +45,13 @@ li {
 .footer {
   background-color: #f8f9fb;
   z-index: 2;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 4px;
 }
 .carousel img {
   /* height: 50vh; */

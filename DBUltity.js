@@ -6,7 +6,7 @@ const DBUltity = {
     const [type, classN, pattern] = query.split("/");
     console.log([type, classN, pattern]);
     const params = new URLSearchParams(_params);
-    console.log("xx", type, classN, pattern, params.get("perpage"));
+    // console.log("xx", type, classN, pattern, params.get("perpage"));
 
     if (type == "get") {
       let data = getData(classN, pattern, params);

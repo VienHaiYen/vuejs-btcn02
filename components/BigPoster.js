@@ -1,13 +1,5 @@
 import DBUltity from "../DBUltity.js";
-import db from "../db/data.js";
 let scaleNum = 1.02;
-const get5NewestMovies = (movies, n) => {
-  let nLastestMovies = movies
-    .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
-    .splice(0, n);
-
-  return nLastestMovies;
-};
 
 export default {
   data() {
