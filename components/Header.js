@@ -2,6 +2,7 @@ export default {
   data() {
     return { key: 20633 };
   },
+  methods: {},
   template: `
     <div
       class="header d-flex justify-content-between align-items-center px-2 rounded"

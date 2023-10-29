@@ -1,4 +1,3 @@
-import db from "../db/data.js";
 import DBUltity from "../DBUltity.js";
 let scaleNum = 1.1;
 

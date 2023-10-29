@@ -10,12 +10,23 @@ export default {
     Footer,
   },
   data() {
-    return { key: 20633 };
+    return {
+      key: 20633,
+      receivedData: "",
+      isSeaching: false,
+    };
+  },
+  methods: {
+    receiveData(data) {
+      this.receivedData = data;
+      console.log(233, data);
+      this.isSeaching = true;
+    },
   },
   template: `
     <Header key="20633"/>
-    <Navbar />
-    <Main />
+    <Navbar  @changeData="receiveData"/>
+    <Main :display="isSeaching"/>
     <Footer />
     `,
   // <Footer />

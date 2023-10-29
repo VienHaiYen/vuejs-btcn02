@@ -1,6 +1,12 @@
 export default {
   data() {
-    return {};
+    return { inputValue: "" };
+  },
+  methods: {
+    search() {
+      console.log(this.inputValue);
+      this.$emit("changeData", this.inputValue);
+    },
   },
   template: `
     <div
@@ -14,8 +20,9 @@ export default {
             type="text"
             placeholder="Search"
             id="search"
+            v-model="inputValue"
           />
-          <button class="btn btn-outline-success px-2 py-0 m-1 fw-normal">
+          <button class="btn btn-outline-success px-2 py-0 m-1 fw-normal" @click="search">
             Search
           </button>
         </div>
