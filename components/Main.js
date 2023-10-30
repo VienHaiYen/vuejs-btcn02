@@ -53,7 +53,7 @@ export default {
       <div v-if="!home &&!isDetail">
         <SearchResult :search="search" @showDetails="getDetailMovieID"/>
       </div>
-    <div v-if="home && !isDetail">
+    <div v-if="home && !isDetail" >
       <BigPoster  @showDetails="getDetailMovieID" />
       <Popular  @showDetails="getDetailMovieID"/>
       <Rating  @showDetails="getDetailMovieID"/>

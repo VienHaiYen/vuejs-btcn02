@@ -15,7 +15,7 @@ export default {
     <div
       class="navbar d-flex justify-content-between align-items-center p-2 rounded mt-2"
     >
-      <button @click="returnHome">Home</button>
+      <button class="btn" @click="returnHome">Home</button>
       <div>
         <div class="search d-flex">
           <input

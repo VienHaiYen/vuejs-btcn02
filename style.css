@@ -9,15 +9,9 @@ html {
   display: flex;
   justify-content: center;
 }
+
 body {
-  width: 100%;
-  background-color: #cccccc !important;
-  min-height: 100vh;
-  padding: 0.3rem;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-body {
+  margin-bottom: 32px;
   width: 100%;
   background-color: #cccccc !important;
   min-height: 100vh;
@@ -37,6 +31,7 @@ li {
   color: #686767;
 }
 .--dark-mode .header,
+.--dark-mode .footer,
 .--dark-mode .navbar {
   background-color: #212429;
 }
@@ -49,11 +44,10 @@ li {
   background-color: #f8f9fb;
   z-index: 2;
 }
+.--dark-mode .navbar button.btn {
+  color: #fff !important;
+}
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   margin: 4px;
 }
 .carousel img {
