@@ -24,6 +24,9 @@ export default {
   watch: {
     home: function () {
       console.log("home", this.home);
+      if (this.home == true) {
+        this.isDetail = false;
+      }
     },
     search: function () {
       console.log(this.search);
