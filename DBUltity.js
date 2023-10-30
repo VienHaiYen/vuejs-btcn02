@@ -21,9 +21,11 @@ const DBUltity = {
 };
 
 const getNNewestMovies = (movies, n) => {
+  console.log("befor get", movies.length);
   let nLastestMovies = movies
     .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
-    .splice(0, n);
+    .slice(0, n);
+  console.log("befor get", movies.length);
 
   return nLastestMovies;
 };
@@ -39,22 +41,22 @@ const getData = (classN, pattern, params) => {
   } else {
     switch (classN) {
       case "movie":
-        movies = db.Movies.splice((page - 1) * perpage, page * perpage);
+        movies = db.Movies.slice((page - 1) * perpage, page * perpage);
         break;
       case "5-lastest":
         movies = getNNewestMovies(db.Movies, 5);
         break;
       case "popular":
-        movies = db.Top50Movies.splice((page - 1) * perpage, page * perpage);
+        movies = db.Top50Movies.slice((page - 1) * perpage, page * perpage);
         break;
       case "top-movies":
-        movies = db.MostPopularMovies.splice(
+        movies = db.MostPopularMovies.slice(
           (page - 1) * perpage,
           page * perpage
         );
         break;
       case "review":
-        movies = db.Reviews.splice((page - 1) * perpage, page * perpage);
+        movies = db.Reviews.slice((page - 1) * perpage, page * perpage);
         break;
       default:
         alert("Error fetch");
@@ -77,6 +79,7 @@ const getDetails = (classN, pattern) => {
   switch (classN) {
     case "movie":
       movies = db.Movies.filter((item) => item.id == pattern);
+      console.log("mov", movies);
       reviews = db.Reviews.filter((item) => item.movieId == pattern)[0].items;
       break;
 

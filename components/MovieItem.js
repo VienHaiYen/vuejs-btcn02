@@ -8,17 +8,18 @@ export default {
   methods: {
     async getdata() {
       let info = await DBUltity.fetch(
-        `details/movie/tt4154796?page=1&perpage=15`
-        // `details/movie/${this.id}?page=1&perpage=15`
+        // `details/movie/tt4154796`
+        `details/movie/${this.id}`
       );
       this.movieDetails = info.movies[0];
       this.reviews = info.reviews;
-      console.log("ww", this.reviews);
+      console.log(`details/movie/${this.id}`);
+      console.log("ww", this.movieDetails);
     },
   },
   mounted() {
-    this.getdata();
     console.log(123);
+    this.getdata();
   },
   template: `
       <div class="card mb-3 d-flex flex-row">

@@ -22,11 +22,18 @@ export default {
       console.log(233, data);
       this.isSeaching = true;
     },
+    returnHome() {
+      this.isSeaching = false;
+    },
+    returnNotHome() {
+      // console.log(233, data);
+      this.isSeaching = true;
+    },
   },
   template: `
     <Header key="20633"/>
-    <Navbar  @changeData="receiveData"/>
-    <Main :home="!isSeaching" :search="seachValue"/>
+    <Navbar  @changeData="receiveData" @returnHome="returnHome"/>
+    <Main :home="!isSeaching" :search="seachValue" @returnNotHome="returnNotHome"/>
     <Footer />
     `,
 };

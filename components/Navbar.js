@@ -7,12 +7,15 @@ export default {
       console.log(this.inputValue);
       this.$emit("changeData", this.inputValue);
     },
+    returnHome() {
+      this.$emit("returnHome");
+    },
   },
   template: `
     <div
       class="navbar d-flex justify-content-between align-items-center p-2 rounded mt-2"
     >
-      <span>Home</span>
+      <button @click="returnHome">Home</button>
       <div>
         <div class="search d-flex">
           <input

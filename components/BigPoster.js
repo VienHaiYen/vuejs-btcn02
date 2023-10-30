@@ -33,6 +33,10 @@ export default {
       e.target.parentElement.querySelector(".movie-short-info").style.display =
         "none";
     },
+    showDetails(i) {
+      console.log("click big", i);
+      this.$emit("showDetails", i);
+    },
   },
   mounted() {
     this.getdata();
@@ -40,7 +44,7 @@ export default {
   template: `
     <div id="carouselExampleFade" class="carousel slide carousel-fade m-2 d-flex align-items-center justify-content-center" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="slide-item carousel-item d-flex align-items-center flex-column position-relative" v-for="(i,index) in topLastestMovies"  :class="{active:this.active==index}">
+        <div class="slide-item carousel-item d-flex align-items-center flex-column position-relative" v-for="(i,index) in topLastestMovies"  @click="showDetails(i.id)" :class="{active:this.active==index}">
           <img :src='i.image' @mouseover="scale" @mouseout="reset" alt="..." />
           <div class="movie-short-info px-2 py-1" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%); line-spacing:2px">
             <li>{{i.title}} - {{i.year}}</li>
