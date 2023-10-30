@@ -21,11 +21,9 @@ const DBUltity = {
 };
 
 const getNNewestMovies = (movies, n) => {
-  console.log("befor get", movies.length);
   let nLastestMovies = movies
     .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
     .slice(0, n);
-  console.log("befor get", movies.length);
 
   return nLastestMovies;
 };
@@ -36,9 +34,11 @@ const getData = (classN, pattern, params) => {
   let movies = [];
   if (pattern) {
     movies = db.Movies.filter(
-      (item) => item.fullTitle.toLowerCase().indexOf(pattern) !== -1
+      (item) => item.fullTitle.toLowerCase().indexOf(pattern) != -1
     );
   } else {
+    let listIdInMovies = db.Movies.map((item) => item.id);
+    console.log(1222, listIdInMovies);
     switch (classN) {
       case "movie":
         movies = db.Movies.slice((page - 1) * perpage, page * perpage);
@@ -47,13 +47,19 @@ const getData = (classN, pattern, params) => {
         movies = getNNewestMovies(db.Movies, 5);
         break;
       case "popular":
-        movies = db.Top50Movies.slice((page - 1) * perpage, page * perpage);
+        movies = db.Top50Movies.filter((item) => {
+          console.log("mm", listIdInMovies.indexOf(item.id));
+          return listIdInMovies.indexOf(item.id) != -1;
+        });
+        movies = movies.slice((page - 1) * perpage, page * perpage);
         break;
       case "top-movies":
-        movies = db.MostPopularMovies.slice(
-          (page - 1) * perpage,
-          page * perpage
-        );
+        movies = db.MostPopularMovies.filter((item) => {
+          console.log("mm", listIdInMovies.indexOf(item.id));
+          return listIdInMovies.indexOf(item.id) != -1;
+        });
+        movies = movies.slice((page - 1) * perpage, page * perpage);
+
         break;
       case "review":
         movies = db.Reviews.slice((page - 1) * perpage, page * perpage);

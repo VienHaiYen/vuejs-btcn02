@@ -48,9 +48,12 @@ export default {
       e.target.parentElement.querySelector(".movie-short-info").style.display =
         "none";
     },
+    showDetails(i) {
+      console.log("click big", i);
+      this.$emit("showDetails", i);
+    },
   },
   mounted() {
-    console.log(222, this.topLastestMovies);
     this.getdata();
   },
   template: `
@@ -58,7 +61,7 @@ export default {
     <div id="carouselExampleFade" class="carousel slide carousel-fade m-2" style="height:200px" data-bs-ride="carousel">
       <div class="carousel-inner  d-flex justify-content-around h-100" style="position:relative; width:100%">
         <div v-for="(i,index) in groupPopularMovie[active]" style="flex:1; width:32%" class="active d-flex justify-content-center flex-column">
-        <img :src='i.image' @mouseover="scale" @mouseout="reset" class="fill" alt="...">
+        <img :src='i.image' @mouseover="scale" @mouseout="reset" class="fill"  @click="showDetails(i.id)" alt="...">
         <div class="movie-short-info px-2 py-1 mb-2" style="position:absolute;bottom:0;left:0;right:0; width:100%;">{{i.title}} - {{i.year}}</div>
         </div>
       </div>
